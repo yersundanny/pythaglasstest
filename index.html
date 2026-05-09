@@ -1,199 +1,155 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PYTHAGLASS | Make Your Life Balanced</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg-dark: #111111;
-    --toxic-green: #CCFF00;
-    --neon-pink: #FF007F;
-    --bio-orange: #FF5500;
-    --deep-purple: #7A00FF;
-    --white: #F4F4F0;
-    --black: #000000;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PYTHAGLASS | Make Your Life Balanced</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #111111;
+            --toxic-green: #CCFF00;
+            --neon-pink: #FF007F;
+            --bio-orange: #FF5500;
+            --deep-purple: #7A00FF;
+            --white: #F4F4F0;
+            --black: #000000;
+        }
 
-  html { scroll-behavior: smooth; }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  body {
-    font-family: 'Outfit', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--white);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-  h1, h2, h3, .title-font {
-    font-family: 'Syne', sans-serif;
-    text-transform: uppercase;
-  }
+        /* 이미지 박스 최적화 */
+        .img-box {
+            background-color: var(--bg-dark);
+            border: 4px solid var(--black);
+            box-shadow: 8px 8px 0px var(--toxic-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            padding: 0 !important;
+        }
 
-  /* 이미지 박스 및 이미지 설정 */
-  .img-box {
-    background-color: var(--bg-dark);
-    border: 4px solid var(--black);
-    box-shadow: 8px 8px 0px var(--toxic-green);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    padding: 0 !important; /* 이미지 꽉 차게 패딩 제거 */
-  }
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
 
-  .img-box img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 박스 비율에 맞춰 채움 */
-    display: block;
-  }
+        /* 헤더/네비게이션 */
+        nav {
+            position: sticky;
+            top: 0;
+            background-color: var(--deep-purple);
+            border-bottom: 4px solid var(--black);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+        }
 
-  /* 네비게이션 */
-  nav {
-    position: sticky;
-    top: 0;
-    background-color: var(--deep-purple);
-    border-bottom: 4px solid var(--black);
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 1000;
-  }
-  .nav-text { font-size: 0.9rem; font-weight: 600; color: var(--toxic-green); }
-  .nav-links { display: flex; gap: 30px; align-items: center; }
-  .nav-links a { color: var(--white); text-decoration: none; font-weight: 800; }
-  
-  /* 버튼 스타일 */
-  .btn {
-    display: inline-block;
-    background-color: var(--toxic-green);
-    color: var(--black);
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.2rem;
-    padding: 15px 40px;
-    text-decoration: none;
-    border: 3px solid var(--black);
-    border-radius: 50px;
-    box-shadow: 6px 6px 0px var(--neon-pink);
-    transition: all 0.2s ease;
-  }
-  .btn:hover { transform: translate(4px, 4px); box-shadow: 2px 2px 0px var(--neon-pink); }
+        .btn {
+            display: inline-block;
+            background-color: var(--toxic-green);
+            color: var(--black);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            padding: 15px 40px;
+            text-decoration: none;
+            border: 3px solid var(--black);
+            border-radius: 50px;
+            box-shadow: 6px 6px 0px var(--neon-pink);
+            transition: 0.2s;
+        }
 
-  /* 흘러가는 배너 */
-  .marquee-tape {
-    background-color: var(--bio-orange);
-    color: var(--black);
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    padding: 10px 0;
-    white-space: nowrap;
-    overflow: hidden;
-    border-top: 3px solid var(--black);
-    border-bottom: 3px solid var(--black);
-  }
-  .marquee-tape span {
-    display: inline-block;
-    padding-left: 100%;
-    animation: marquee 20s linear infinite;
-  }
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); }
-  }
+        .marquee-tape {
+            background-color: var(--bio-orange);
+            color: var(--black);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            padding: 10px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            border-bottom: 3px solid var(--black);
+        }
 
-  /* 섹션 레이아웃 */
-  section { padding: 100px 5%; border-bottom: 5px solid var(--black); }
-  
-  .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-  .hero h1 { font-size: clamp(3rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 20px; }
-  
-  .philosophy { text-align: center; background-color: var(--deep-purple); }
-  .philosophy h2 { font-size: 3rem; color: var(--toxic-green); margin-bottom: 30px; }
+        .marquee-tape span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+        }
 
-  .birth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
 
-  .final-design-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 50px; }
-  .step-card { background: var(--bio-orange); border: 4px solid var(--black); padding: 20px; }
+        section { padding: 80px 5%; }
+        .hero { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .hero h1 { font-family: 'Syne', sans-serif; font-size: 4rem; line-height: 1; }
 
-  @media (max-width: 900px) {
-    .hero, .final-design-grid { grid-template-columns: 1fr; }
-  }
-</style>
+        .birth-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+
+        footer { background: var(--black); padding: 40px; text-align: center; border-top: 4px solid var(--toxic-green); }
+    </style>
 </head>
 <body>
 
-  <nav>
-    <div class="nav-text">PYTHAGLASS : BALANCE YOUR LIFE</div>
-    <div class="nav-links">
-      <a href="#philosophy">CONCEPT</a>
-      <a href="#shop">BUY NOW</a>
-    </div>
-  </nav>
+    <nav>
+        <div style="font-weight: 800; color: var(--toxic-green);">PYTHAGLASS</div>
+        <div class="nav-links"><a href="#shop" style="color: white; text-decoration: none; font-weight: 800;">BUY NOW</a></div>
+    </nav>
 
-  <div class="marquee-tape">
-    <span>☣ DEFINING SPACE, ONE GRAIN AT A TIME ☣ PYTHAGLASS SURVIVAL KIT ☣ DEFINING SPACE, ONE GRAIN AT A TIME ☣</span>
-  </div>
+    <div class="marquee-tape">
+        <span>☣ DEFINING SPACE, ONE GRAIN AT A TIME ☣ PYTHAGLASS SURVIVAL KIT ☣</span>
+    </div>
 
-  <section class="hero">
-    <div class="hero-text">
-      <h1>BUY<br>PYTHAGLASS<br>TODAY,</h1>
-      <p style="color: var(--toxic-green); font-weight: 800; margin-bottom: 30px;">MAKE YOUR LIFE BALANCED.</p>
-      <a href="#shop" class="btn">GET YOUR ARTIFACT ➔</a>
-    </div>
-    <div class="img-box" style="height: 500px; box-shadow: 12px 12px 0px var(--bio-orange);">
-      <img src="./images/img1.png" alt="Pythaglass Main">
-    </div>
-  </section>
+    <section class="hero">
+        <div>
+            <h1>BUY<br>PYTHAGLASS<br>TODAY</h1>
+            <p style="margin: 20px 0; color: var(--toxic-green);">MAKE YOUR LIFE BALANCED.</p>
+            <a href="#" class="btn">GET ARTIFACT ➔</a>
+        </div>
+        <!-- 캡쳐 1 위치 -->
+        <div class="img-box" style="height: 500px; box-shadow: 12px 12px 0px var(--bio-orange);">
+            <img src="images/img1.png" alt="Hero Image">
+        </div>
+    </section>
 
-  <section id="philosophy" class="philosophy">
-    <h2>PYTHAGLASS WILL MAKE YOU HAPPY</h2>
-    <div class="img-box" style="max-width: 800px; height: 300px; margin: 0 auto; border-color: var(--white);">
-      <img src="./images/img2.png" alt="Ocean Harmony">
-    </div>
-    <p style="margin-top: 40px; font-size: 1.2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-      Pythaglass transforms abstract logic into a mesmerizing visual reality. witness the hidden harmony of the universe in the palm of your hand.
-    </p>
-  </section>
+    <section id="philosophy" style="background: var(--deep-purple); text-align: center;">
+        <h2 style="font-family: 'Syne'; font-size: 2.5rem; margin-bottom: 30px;">VISUAL HARMONY</h2>
+        <!-- 캡쳐 2 위치 -->
+        <div class="img-box" style="max-width: 800px; height: 300px; margin: 0 auto;">
+            <img src="images/img2.png" alt="Ocean">
+        </div>
+    </section>
 
-  <section class="concept">
-    <h2 style="text-align: center; margin-bottom: 50px; font-size: 3rem;">THE BIRTH</h2>
-    <div class="birth-grid">
-      <div class="img-box" style="height: 300px;"><img src="./images/img3.png" alt="Birth 1"></div>
-      <div class="img-box" style="height: 300px;"><img src="./images/img4.png" alt="Birth 2"></div>
-      <div class="img-box" style="height: 300px;"><img src="./images/img5.png" alt="Birth 3"></div>
-    </div>
-  </section>
+    <section>
+        <h2 style="text-align: center; margin-bottom: 40px; font-family: 'Syne';">THE BIRTH</h2>
+        <!-- 캡쳐 3 위치들 -->
+        <div class="birth-grid">
+            <div class="img-box" style="height: 300px;"><img src="images/img3.png" alt="Birth 1"></div>
+            <div class="img-box" style="height: 300px;"><img src="images/img4.png" alt="Birth 2"></div>
+            <div class="img-box" style="height: 300px;"><img src="images/img5.png" alt="Birth 3"></div>
+        </div>
+    </section>
 
-  <section id="process" style="background-color: var(--white); color: var(--black);">
-    <h2 style="text-align: center; font-size: 3rem; margin-bottom: 50px;">DESIGN PROCESS</h2>
-    <div class="final-design-grid">
-      <div class="step-card">
-        <div class="img-box" style="height: 300px; background: white;"><img src="./images/img12.png" alt="Step 1"></div>
-        <h3 style="margin-top: 20px;">STEP 01</h3>
-        <p>Simple connection for perfect balance.</p>
-      </div>
-      <div class="step-card" style="background: var(--toxic-green);">
-        <div class="img-box" style="height: 300px; background: white;"><img src="./images/img13.png" alt="Step 2"></div>
-        <h3 style="margin-top: 20px;">SATISFACTION</h3>
-        <p>Watch the sand, find your peace.</p>
-      </div>
-    </div>
-  </section>
-
-  <footer style="background: var(--black); padding: 50px; text-align: center;">
-    <div class="img-box" style="width: 200px; height: 100px; margin: 0 auto 30px; border-style: dashed;">
-      <img src="./images/img16.png" alt="Logo" style="object-fit: contain;">
-    </div>
-    <p>© 2026 PYTHAGLASS. ALL RIGHTS RESERVED.</p>
-  </footer>
+    <footer>
+        <p>© 2026 PYTHAGLASS. ALL RIGHTS RESERVED.</p>
+    </footer>
 
 </body>
 </html>
